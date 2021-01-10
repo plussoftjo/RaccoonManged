@@ -1,0 +1,129 @@
+{
+    "main":{
+        "header":"مرحبا",
+        "subtitle":"هل انت مستعد لتجميع بعض النقاط !",
+        "total_coins":"مجموع النقاط",
+        "go":"أذهب",
+        "today":"اليوم",
+        "steps":"الخطوات",
+        "coins":"النقاط",
+        "task_done":"المهمات المنجزة"
+    },
+    "social":{
+        "header":"المجتمع",
+        "followers":"المتابعون",
+        "explore":"تصفح",
+        "like":"اعجاب",
+        "likes":"اعجاب",
+        "see_all":"مشاهدة جميع",
+        "comments":"التعليقات",
+        "search":"البحث",
+        "you_dont_follow":"لا يوجد متابعين حاليا"
+    },
+    "post":{
+        "header":"المنشور",
+        "likes":"الاعجابات",
+        "comment":"تعليق",
+        "send":"إرسال"
+    },
+    "profile":{
+        "posts":"المنشورات",
+        "followers":"المتابعون",
+        "following":"المتابعين",
+        "follow":"متابعة",
+        "bio":"الوصف",
+        "address":"العنوان"
+    },
+    "make_post":{
+        "header":"اضافة منشور",
+        "post":"المنشور",
+        "add_image":"اضافة صورة",
+        "add_post":"اضافة المنشور"
+    },
+    "coins":{
+        "header":"النقاط",
+        "today":"اليوم",
+        "total":"المجموع",
+        "steps":"الخطوات",
+        "step_tasks":"مهمات الخطوات",
+        "social_tasks":"مهمات المجتمع",
+        "tasks":{
+            "steps_daiy":"خطوة يوميا",
+            "follow_person":"متابعة شخص",
+            "make_post":"اضافة منشور جديد",
+            "comment_in_post":"تعليق على منشور"
+        },
+        "coins":"النقاط",
+        "add_coins_success":"تمت اضافة النقاط"
+    },
+    "prizes":{
+        "header":"الجوائز",
+        "total_coins":"مجموع النقاط",
+        "digital_card":"بطاقات"
+    },
+    "prizes_categories_show":{
+        "select_card":"قم بأختيار نوع البطاقة"
+    },
+    "checkout":{
+        "buy_now":"شراء الان",
+        "total_coins":"مجموع النقاط",
+        "price":"السعر",
+        "there_are_no_code":"لا يوجد كود حاليا الرجاء المحاولة لاحقا",
+        "there_are_problem":"يوجد مشكلة في الشراء الرجاء المحاولة لاحقا"
+    },
+    "checkout_done":{
+        "order_complete":"تمت عملية الشراء بنجاح",
+        "you_have_get_code":"لقد حصلت على الكود الخاص بك",
+        "back_to_home":"العوده الى الرئيسية"
+    },
+    "settings_main":{
+        "header":"الاعدادات",
+        "user_details":"معلومات المستخدم",
+        "my_orders":"الطلبات",
+        "coins_logs":"تقارير النقاط",
+        "languages":"اللغة",
+        "logout":"تسجيل خروج",
+        "code":"الكود",
+        "send_this_code":"قم بأرسال هذا الكود إلى اصدقائك للحصول على +3 نقاط"
+    },
+    "user_details":{
+        "header":"ملعومات المستخدم",
+        "user_name":"اسم المستخدم",
+        "phone":"رقم الهاتف",
+        "password":"رمز المرور",
+        "keep_password":"قم بابقاء كلمة المرور فارغة اذا لم ترد تغيرها",
+        "update_profile_success":"تم تحديث المعلومات بنجاح",
+        "save":"حفظ"
+    },
+    "my_orders":{
+        "header":"الطلبات",
+        "id":"الرقم التعريفي",
+        "category":"الفئة",
+        "type":"النوع",
+        "fee":"التكلفة",
+        "code":"الكود",
+        "date":"التاريخ"
+    },
+    "coins_logs":{
+        "header":"تقارير النقاط",
+        "preview_today_coins_logs":"متابعة تقارير النقاط اليومي",
+        "id":"الرقم التعريفي",
+        "coin":"نفاط",
+        "type":"المصدر",
+        "date":"التاريخ"
+    },
+    "languages":{
+        "header":"اللغة",
+        "select_your_language":"قم بأختيار اللغة"
+    },
+    "auth":{
+        "login":"Login",
+        "register":"Register",
+        "phone":"Phone",
+        "password":"Password",
+        "user_name":"User Name",
+        "dont_have_account":"Don't Have Account?",
+        "new_account":"New Account",
+        "have_account":"Have account?"
+    }
+}

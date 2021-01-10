@@ -1,0 +1,129 @@
+{
+    "main":{
+        "header":"Welcome",
+        "subtitle":"Are your ready for some coins to collect !",
+        "total_coins":"Total Coins",
+        "go":"Go",
+        "today":"Today",
+        "steps":"Steps",
+        "coins":"Coins",
+        "task_done":"Task Done"
+    },
+    "social":{
+        "header":"Social",
+        "followers":"FOLLOWERS",
+        "explore":"EXPLORE",
+        "like":"Like",
+        "likes":"Likes",
+        "see_all":"See All",
+        "comments":"Comments",
+        "search":"Search",
+        "you_dont_follow":"You Don't Follow Any User Yet!"
+    },
+    "post":{
+        "header":"Post",
+        "likes":"Likes",
+        "comment":"Comment",
+        "send":"Send"
+    },
+    "profile":{
+        "posts":"Posts",
+        "followers":"Followers",
+        "following":"Following",
+        "follow":"Follow",
+        "bio":"bio",
+        "address":"Address"
+    },
+    "make_post":{
+        "header":"Add Post",
+        "post":"Post",
+        "add_image":"Add Image",
+        "add_post":"Add Post"
+    },
+    "coins":{
+        "header":"Coins",
+        "today":"Today",
+        "total":"Total",
+        "steps":"Steps",
+        "step_tasks":"Step Tasks",
+        "social_tasks":"Social Tasks",
+        "tasks":{
+            "steps_daiy":"Steps Daily",
+            "follow_person":"Follow Person",
+            "make_post":"Make Post",
+            "comment_in_post":"Comment In Post"
+        },
+        "coins":"Coins",
+        "add_coins_success":"Add Coins Success"
+    },
+    "prizes":{
+        "header":"Prizes",
+        "total_coins":"Total Coins",
+        "digital_card":"Digital Cards"
+    },
+    "prizes_categories_show":{
+        "select_card":"Select Card Type"
+    },
+    "checkout":{
+        "buy_now":"Buy Now",
+        "total_coins":"Total Coins",
+        "price":"Price",
+        "there_are_no_code":"There are no code for now try again later",
+        "there_are_problem":"There Are Problem Please try again later"
+    },
+    "checkout_done":{
+        "order_complete":"Order Complete",
+        "you_have_get_code":"You have get your code",
+        "back_to_home":"BACK TO HOME"
+    },
+    "settings_main":{
+        "header":"Settings",
+        "user_details":"User Details",
+        "my_orders":"My Orders",
+        "coins_logs":"Coins Logs",
+        "languages":"Languages",
+        "logout":"Logout",
+        "code":"Code",
+        "send_this_code":"Send this code to your friend to get +3 coins"
+    },
+    "user_details":{
+        "header":"User Details",
+        "user_name":"User Name",
+        "phone":"Phone",
+        "password":"Password",
+        "keep_password":"Keep password empty if you don't want change",
+        "update_profile_success":"Update Profile Success",
+        "save":"Save"
+    },
+    "my_orders":{
+        "header":"My Orders",
+        "id":"ID",
+        "category":"Category",
+        "type":"Type",
+        "fee":"Fee",
+        "code":"Code",
+        "date":"Date"
+    },
+    "coins_logs":{
+        "header":"Coins Logs",
+        "preview_today_coins_logs":"Preview Today Coins Logs",
+        "id":"ID",
+        "coin":"Coin",
+        "type":"Type",
+        "date":"Date"
+    },
+    "languages":{
+        "header":"Languages",
+        "select_your_language":"Select Your Language"
+    },
+    "auth":{
+        "login":"Login",
+        "register":"Register",
+        "phone":"Phone",
+        "password":"Password",
+        "user_name":"User Name",
+        "dont_have_account":"Don't Have Account?",
+        "new_account":"New Account",
+        "have_account":"Have account?"
+    }
+}
