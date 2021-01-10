@@ -23,7 +23,10 @@
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-8749426160957410~3140736290"
       },
-      "bundleIdentifier": "com.raccoon.plus"
+      "bundleIdentifier": "com.raccoon.plus",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "Raccoon App - Need the permission to get your media , To help you to share your activity with you friends and others."
+      }
     },
     "android": {
       "adaptiveIcon": {
