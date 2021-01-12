@@ -104,7 +104,7 @@ let Loading = (props) => {
     await LocaleLoader();
 
     let _locale = await AsyncStorage.getItem(StorageToken.localeToken);
-    if(!locale) {
+    if(!_locale) {
       setLocale({
         lang: "en",
         rtl: false,
