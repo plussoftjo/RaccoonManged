@@ -8,6 +8,7 @@ import { translate } from "../../../translations";
 
 let CheckoutDone = (props) => {
   let { order } = props.user;
+  let {lang} = props.locale
   return (
     <Layout
       style={{
@@ -19,11 +20,11 @@ let CheckoutDone = (props) => {
     >
       <GradientSpace />
       <Text category="h3" style={{ color: "white" }}>
-        {translate("checkout_done.order_complete")}
+        {translate("checkout_done.order_complete",lang)}
       </Text>
       <View style={{ paddingTop: 20 }}>
         <Text category="s1" style={{ color: "white" }}>
-        {translate("checkout_done.you_have_get_code")}
+        {translate("checkout_done.you_have_get_code",lang)}
         </Text>
       </View>
       <View
@@ -45,7 +46,7 @@ let CheckoutDone = (props) => {
             props.navigation.navigate("BottomTapNavigation");
           }}
         >
-          {translate("checkout_done.back_to_home")}
+          {translate("checkout_done.back_to_home",lang)}
         </Button>
       </View>
     </Layout>
@@ -55,6 +56,7 @@ let CheckoutDone = (props) => {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    locale:state.settings.locale
   };
 };
 

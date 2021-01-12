@@ -22,7 +22,7 @@ import { SocialActions, UserActions } from "../../../stores";
 
 let Profile = (props) => {
   let { user, route, navigation, setPost, setSocialTasks,locale } = props;
-
+  let {lang} = props.locale
   let [profile, setProfile] = useState({ profile: { bio: "" } });
   let [profilePosts, setProfilePosts] = useState([]);
   let [owner, setOwner] = useState(false);
@@ -223,7 +223,7 @@ let Profile = (props) => {
                       category="s1"
                       style={{ color: "red", textAlign: "center" }}
                     >
-                      {translate("profile.posts")}
+                      {translate("profile.posts",lang)}
                     </Text>
                   </View>
                   <View
@@ -236,7 +236,7 @@ let Profile = (props) => {
                       category="s1"
                       style={{ color: "red", textAlign: "center" }}
                     >
-                      {translate("profile.followers")}
+                      {translate("profile.followers",lang)}
                     </Text>
                   </View>
                   <View
@@ -249,7 +249,7 @@ let Profile = (props) => {
                       category="s1"
                       style={{ color: "red", textAlign: "center" }}
                     >
-                      {translate("profile.following")}
+                      {translate("profile.following",lang)}
                     </Text>
                   </View>
                 </View>
@@ -270,7 +270,7 @@ let Profile = (props) => {
                           _unFollow();
                         }}
                       >
-                        {translate("profile.following")}
+                        {translate("profile.following",lang)}
                       </Button>
                     )}
                     {!isFollow && (
@@ -281,7 +281,7 @@ let Profile = (props) => {
                           _follow();
                         }}
                       >
-                        {translate("profile.follow")}
+                        {translate("profile.follow",lang)}
                       </Button>
                     )}
 
@@ -310,8 +310,8 @@ let Profile = (props) => {
                   onChangeText={(val) => {
                     setBio(val);
                   }}
-                  placeholder={translate("profile.bio")}
-                  label={translate("profile.bio")}
+                  placeholder={translate("profile.bio",lang)}
+                  label={translate("profile.bio",lang)}
                   multiline={true}
                   textStyle={{ minHeight: 62 }}
                   onBlur={_updateBio}
@@ -323,8 +323,8 @@ let Profile = (props) => {
                   onChangeText={(val) => {
                     setAddress(val);
                   }}
-                  placeholder={translate("profile.address")}
-                  label={translate("profile.address")}
+                  placeholder={translate("profile.address",lang)}
+                  label={translate("profile.address",lang)}
                   onBlur={_updateAddress}
                 />
               )}

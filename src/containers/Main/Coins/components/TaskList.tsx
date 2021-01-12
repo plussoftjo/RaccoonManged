@@ -11,7 +11,8 @@ export interface Props {
     icon:any,
     translate:any,
     scope:string,
-    rtl:boolean
+    rtl:boolean,
+    lang:string
 }
 const TaskList: React.FC<Props> = (props) => {
     return (
@@ -23,7 +24,7 @@ const TaskList: React.FC<Props> = (props) => {
                 </View>
                 <View style={{marginHorizontal:5}}>
                     <Text category="s1" style={{fontWeight:'900'}}>{props.title}</Text>
-                    <Text category="s1" style={{color:'#FFD700'}}>+{props.coins.toFixed(2)} {props.translate('coins.coins')}</Text>
+                    <Text category="s1" style={{color:'#FFD700'}}>+{props.coins.toFixed(2)} {props.translate('coins.coins',props.lang)}</Text>
                 </View>
             </View>
             {props.done &&

@@ -16,6 +16,7 @@ import { translate } from "../../../translations";
 let SettingsMain = (props) => {
   let { user } = props.user;
   let { navigation,locale } = props;
+  let {lang} = props.locale;
 
   let _logout = async () => {
     try {
@@ -30,35 +31,35 @@ let SettingsMain = (props) => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ flexGrow: 1 }}
       >
-        <HeaderContent user={user} />
+        <HeaderContent user={user} lang={lang} />
         <View style={{ height: 15 }}></View>
         <ContentCard>
           <View style={{ marginTop: 15 }} />
           <ListItem
-            title={translate('settings_main.user_details')}
+            title={translate('settings_main.user_details',lang)}
             icon="edit"
             onPress={() => navigation.navigate("UserDetails")}
             rtl={locale.rtl}
           />
           <ListItem
-            title={translate('settings_main.my_orders')}
+            title={translate('settings_main.my_orders',lang)}
             icon="book"
             onPress={() => navigation.navigate("Orders")}
             rtl={locale.rtl}
           />
           <ListItem
-            title={translate('settings_main.coins_logs')}
+            title={translate('settings_main.coins_logs',lang)}
             icon="bars"
             onPress={() => navigation.navigate("CoinsLogs")}
             rtl={locale.rtl}
           />
           <ListItem
-            title={translate('settings_main.languages')}
+            title={translate('settings_main.languages',lang)}
             icon="filetext1"
             onPress={() => navigation.navigate("Language")}
             rtl={locale.rtl}
           />
-          <ListItem caret={false} title={translate('settings_main.logout')} rtl={locale.rtl} icon="logout" onPress={_logout} />
+          <ListItem caret={false} title={translate('settings_main.logout',lang)} rtl={locale.rtl} icon="logout" onPress={_logout} />
         </ContentCard>
       </ScrollView>
     </Layout>

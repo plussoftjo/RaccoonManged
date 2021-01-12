@@ -15,6 +15,7 @@ import {translate} from '../../../../translations'
 
 let HeaderContent = (props) => {
   let { user, steps,todayCoins,coins,coinsLogs } = props.user;
+  let {lang} = props.locale
   let {setShowToast,setCoinsLogs,setTodayCoins,setCoins,navigation,rtl} = props;
   let zoom = useRef(new Animated.Value(1)).current;
 
@@ -100,7 +101,7 @@ let HeaderContent = (props) => {
           }}
         >
           <Text category="h3" style={{ color: "white" }}>
-            {translate('coins.header')}
+            {translate('coins.header',lang)}
           </Text>
           <TouchableOpacity onPress={() => {
             navigation.navigate('Profile',{
@@ -129,7 +130,7 @@ let HeaderContent = (props) => {
             }}
           >
             <Text category="s1" style={{ color: "white",textAlign:'left' }}>
-            {translate('coins.today')}
+            {translate('coins.today',lang)}
             </Text>
             <View
               style={{
@@ -161,10 +162,10 @@ let HeaderContent = (props) => {
               }}
             >
               <Text category="s1" style={{ color: "white" }}>
-              {translate('coins.total')}:{coins}
+              {translate('coins.total',lang)}:{coins}
               </Text>
               <Text category="s1" style={{ color: "white" }}>
-              {translate('coins.steps')}:{steps}
+              {translate('coins.steps',lang)}:{steps}
               </Text>
             </View>
           </View>
@@ -177,6 +178,7 @@ let HeaderContent = (props) => {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    locale:state.settings.locale
   };
 };
 

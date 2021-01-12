@@ -4,7 +4,7 @@ import { Layout, Text, Button } from "@ui-kitten/components";
 import { connect } from "react-redux";
 
 // Global Component
-import { GradientSpace, ContentCard, Toast,Loader } from "../../../components";
+import { GradientSpace, ContentCard, Toast, Loader } from "../../../components";
 
 // Local Components
 import { HeaderContent } from "./components";
@@ -21,10 +21,10 @@ let Checkout = (props) => {
   let { navigation } = props;
   let { selectedSubCategory, selectedCategory } = props.prizes;
   let { coins, user, coinsLogs, orders } = props.user;
-  let {rtl} =props.locale
+  let { rtl,lang } = props.locale;
 
   let [hasToast, setHasToast] = React.useState(null);
-  let [isLoad,setIsLoad] = React.useState(false)
+  let [isLoad, setIsLoad] = React.useState(false);
 
   let Store = () => {
     setIsLoad(true);
@@ -43,7 +43,6 @@ let Checkout = (props) => {
       apis.order.store(
         data,
         (res) => {
-
           // First Set New Coins
           props.setCoins(res.newCoin);
 
@@ -59,25 +58,25 @@ let Checkout = (props) => {
           props.setOrders(_lastOrders);
 
           props.setOrder(res.order);
-          
-          setIsLoad(false)
+
+          setIsLoad(false);
 
           navigation.navigate("CheckoutDone");
         },
         (err) => {
           if (err.response.message == "There are no code") {
-            setHasToast(translate('checkout.there_are_no_code'));
+            setHasToast(translate("checkout.there_are_no_code",lang));
             setTimeout(() => {
               setHasToast(null);
             }, 3000);
           } else {
-            setHasToast(translate('checkout.there_are_problem'));
+            setHasToast(translate("checkout.there_are_problem",lang));
             setTimeout(() => {
               setHasToast(null);
             }, 3000);
           }
 
-          setIsLoad(false)
+          setIsLoad(false);
           console.log(err.response);
         }
       );
@@ -87,7 +86,7 @@ let Checkout = (props) => {
   return (
     <Layout style={{ flex: 1 }}>
       <GradientSpace />
-      
+
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ flex: 1 }}
@@ -126,7 +125,7 @@ let Checkout = (props) => {
           }}
         >
           <ContentCard>
-            <Text category="h4">{translate('checkout.buy_now')}</Text>
+            <Text category="h4">{translate("checkout.buy_now",lang)}</Text>
             <View style={{ height: 10 }}></View>
             <View
               style={{
@@ -142,7 +141,7 @@ let Checkout = (props) => {
                 alignItems: "center",
               }}
             >
-              <Text category="s1">{translate('checkout.total_coins')}</Text>
+              <Text category="s1">{translate("checkout.total_coins",lang)}</Text>
               <Text category="s1">{coins}</Text>
             </View>
             <View
@@ -153,7 +152,7 @@ let Checkout = (props) => {
                 justifyContent: "space-between",
               }}
             >
-              <Text category="h5">{translate('checkout.price')}</Text>
+              <Text category="h5">{translate("checkout.price",lang)}</Text>
               <Text category="s1">{selectedSubCategory.fee}</Text>
             </View>
             <Button
@@ -162,7 +161,7 @@ let Checkout = (props) => {
                 Store();
               }}
             >
-              {translate('checkout.buy_now')}
+              {translate("checkout.buy_now",lang)}
             </Button>
           </ContentCard>
         </View>
@@ -177,7 +176,7 @@ const mapStateToProps = (state) => {
   return {
     prizes: state.prizes,
     user: state.user,
-    locale:state.settings.locale
+    locale: state.settings.locale,
   };
 };
 

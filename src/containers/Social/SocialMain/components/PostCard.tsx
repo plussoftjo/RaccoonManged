@@ -47,10 +47,11 @@ export interface Props {
     _unLike:any,
     _pressPost:any,
     env:Env,
-    translate:any
+    translate:any,
+    lang:string
 }
 const PostCard: React.FC<Props> = (props) => {
-     let {post,user_id,translate} = props;
+     let {post,user_id,translate,lang} = props;
      let theme = useTheme();
      let [isLike,setIsLike] = React.useState(false);
      let [likeCount,setLikeCount] = React.useState(0)
@@ -118,13 +119,13 @@ const PostCard: React.FC<Props> = (props) => {
                     </View>
                </View>
                <View style={{marginTop:5}}>
-                    <Text category="s1" style={{color:'red',textAlign:'left'}}>{likeCount} {translate('social.likes')}</Text>
+                    <Text category="s1" style={{color:'red',textAlign:'left'}}>{likeCount} {translate('social.likes',lang)}</Text>
                     <View style={{flexDirection:'column'}}>
                          <Text category="s1" style={{textAlign:'left'}}>{post.user.name}</Text>
                          <Text category="s2" style={{textAlign:'left'}}>{post.body}</Text>
                     </View>
                     <View style={{marginTop:5}}>
-                         <Text category="s1" style={{color:theme['text-hint-color'],textAlign:'left'}}>{translate('social.see_all')} {post.comments.length} {translate('social.comments')}</Text>
+                         <Text category="s1" style={{color:theme['text-hint-color'],textAlign:'left'}}>{translate('social.see_all',lang)} {post.comments.length} {translate('social.comments',lang)}</Text>
                     </View>
                </View>
           </View>

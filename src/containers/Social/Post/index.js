@@ -33,6 +33,7 @@ let Post = (props) => {
   let { post, profile } = props.social;
   let { user,socialTasks } = props.user;
   let {setSocialTasks,locale} = props;
+  let {lang} = props.locale
 
   let [comment, setComment] = React.useState("");
   let [comments, setComments] = React.useState(post.comments);
@@ -123,7 +124,7 @@ let Post = (props) => {
 
   return (
     <Layout style={{ flex: 1 }}>
-      <TopNavigation title={translate('post.header')} accessoryLeft={BackAction} />
+      <TopNavigation title={translate('post.header',lang)} accessoryLeft={BackAction} />
       <KeyboardAvoidingView
         behavior={Platform.OS == "ios" ? "padding" : "height"}
         style={{ flex: 1 }}
@@ -138,12 +139,13 @@ let Post = (props) => {
             navigation={props.navigation}
             user_id={user.id}
             translate={translate}
+            lang={lang}
           />
           <View>
             <View style={{ flexDirection: "row", alignItems: "center",padding:15 }}>
               <View style={{ flex: 3,marginTop:5 }}>
                 <Input
-                  placeholder={translate('post.comment')}
+                  placeholder={translate('post.comment',lang)}
                   value={comment}
                   onChangeText={(val) => {
                     setComment(val);
@@ -154,7 +156,7 @@ let Post = (props) => {
               </View>
               <View style={{width:10}}></View>
               <TouchableOpacity style={{padding:15,backgroundColor:colors.cottonCandy,borderRadius:3}} onPress={() => {_sendComment()}}>
-                <Text style={{color:'white',fontWeight:'bold'}}>{translate('post.send')}</Text> 
+                <Text style={{color:'white',fontWeight:'bold'}}>{translate('post.send',lang)}</Text> 
               </TouchableOpacity>
             </View>
           </View>
@@ -166,7 +168,7 @@ let Post = (props) => {
             }}
           >
             {comments.map((trg, index) => (
-              <Comments env={env} navigation={props.navigation} key={index} comment={trg} />
+              <Comments lang={lang} env={env} navigation={props.navigation} key={index} comment={trg} />
             ))}
           </View>
         </ScrollView>

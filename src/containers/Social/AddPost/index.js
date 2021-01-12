@@ -21,6 +21,7 @@ import { translate } from "../../../translations";
 let AddPost = (props) => {
   let { user, posts, socialTasks } = props.user;
   let { setPosts, setSocialTasks,locale } = props;
+  let {lang} = props.locale
   const BackIcon = (props) => <Icon {...props} name={locale.rtl ? "arrow-forward":'arrow-back'} />;
 
   const BackAction = () => (
@@ -106,7 +107,7 @@ let AddPost = (props) => {
   return (
     <Layout style={{ flex: 1 }}>
       <TopNavigation
-        title={translate("make_post.header")}
+        title={translate("make_post.header",lang)}
         accessoryLeft={BackAction}
       />
       <ScrollView keyboardShouldPersistTaps="handled">
@@ -114,12 +115,12 @@ let AddPost = (props) => {
           <Input
             value={body}
             onChangeText={(val) => setBody(val)}
-            label={translate('make_post.post')}
+            label={translate('make_post.post',lang)}
             multiline={true}
             textStyle={{ minHeight: 84 }}
           />
           <Button onPress={pickImage} accessoryLeft={CameraButton}>
-          {translate('make_post.add_image')}
+          {translate('make_post.add_image',lang)}
           </Button>
         </View>
 
@@ -139,7 +140,7 @@ let AddPost = (props) => {
           }}
           status="info"
         >
-          {translate('make_post.add_post')}
+          {translate('make_post.add_post',lang)}
         </Button>
       </View>
     </Layout>

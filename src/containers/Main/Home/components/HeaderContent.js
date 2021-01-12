@@ -7,7 +7,7 @@ import {env,Images} from '../../../../constants'
 import {translate} from '../../../../translations'
 
 export default (props) => {
-  let {user} = props;
+  let {user,lang} = props;
   return (
     <View style={{padding:15}}>
       <View style={styles.headerContainer}>
@@ -24,10 +24,10 @@ export default (props) => {
       </View>
       <View style={styles.headerContentConatiner}>
         <Text style={{ color: "white", fontWeight: "bold",textAlign:'left' }} category="h1">
-          {translate('main.header')} {user.name}
+          {translate('main.header',lang)} {user.name}
         </Text>
         <Text category="s1" style={{ color: "white", marginTop: 10,textAlign:'left' }}>
-        {translate('main.subtitle')}
+        {translate('main.subtitle',lang)}
         </Text>
       </View>
     </View>

@@ -40,7 +40,7 @@ let Coins = (props) => {
         </ContentCard>
       </ScrollView>
       {showToast &&
-        <Toast status="primary" title={translate('coins.add_coins_success')} />
+        <Toast status="primary" title={translate('coins.add_coins_success',locale.lang)} />
       }
     </Layout>
   );

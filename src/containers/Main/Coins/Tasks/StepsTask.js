@@ -12,7 +12,7 @@ import {translate} from '../../../../translations'
 let Tasks = ({ user, setShowToast, setCoinsLogs, setTodayCoins, setCoins,locale }) => {
   
   let [isSync,setIsSync] = React.useState(false)
-  
+  let {lang} = locale
   let TaskStepsChecker = (title, step) => {
     let takenToday = Helper.coinsLogsChecker(title, user.coinsLogs);
     if (takenToday) {
@@ -67,10 +67,10 @@ let Tasks = ({ user, setShowToast, setCoinsLogs, setTodayCoins, setCoins,locale 
   return (
     <View style={styles.taskGroup} id="TaskGroup">
       <View style={styles.taskHeader}>
-        <Text category="h5">{translate('coins.step_tasks')}</Text>
+        <Text category="h5">{translate('coins.step_tasks',lang)}</Text>
       </View>
       <TaskList
-        title={"3000 " + translate('coins.tasks.steps_daiy')}
+        title={"3000 " + translate('coins.tasks.steps_daiy',lang)}
         scope={"3000 Steps daily"}
         coins={2}
         done={TaskStepsChecker("3000 Steps daily", 3000)}
@@ -78,9 +78,10 @@ let Tasks = ({ user, setShowToast, setCoinsLogs, setTodayCoins, setCoins,locale 
         icon={Images.DailySteps}
         translate={translate}
         rtl={locale.rtl}
+        lang={lang}
       />
       <TaskList
-        title={"5000 " + translate('coins.tasks.steps_daiy')}
+        title={"5000 " + translate('coins.tasks.steps_daiy',lang)}
         scope={"5000 Steps daily"}
         coins={2}
         done={TaskStepsChecker("5000 Steps daily", 5000)}
@@ -88,9 +89,10 @@ let Tasks = ({ user, setShowToast, setCoinsLogs, setTodayCoins, setCoins,locale 
         icon={Images.DailySteps}
         translate={translate}
         rtl={locale.rtl}
+        lang={lang}
       />
       <TaskList
-        title={"8000 " + translate('coins.tasks.steps_daiy')}
+        title={"8000 " + translate('coins.tasks.steps_daiy',lang)}
         scope={"8000 Steps daily"}
         coins={3}
         done={TaskStepsChecker("8000 Steps daily", 8000)}
@@ -98,9 +100,10 @@ let Tasks = ({ user, setShowToast, setCoinsLogs, setTodayCoins, setCoins,locale 
         icon={Images.DailySteps}
         translate={translate}
         rtl={locale.rtl}
+        lang={lang}
       />
       <TaskList
-        title={"10000 " + translate('coins.tasks.steps_daiy')}
+        title={"10000 " + translate('coins.tasks.steps_daiy',lang)}
         scope={"10000 Steps daily"}
         coins={3}
         done={TaskStepsChecker("10000 Steps daily", 10000)}
@@ -108,6 +111,7 @@ let Tasks = ({ user, setShowToast, setCoinsLogs, setTodayCoins, setCoins,locale 
         icon={Images.DailySteps}
         translate={translate}
         rtl={locale.rtl}
+        lang={lang}
       />
     </View>
   );

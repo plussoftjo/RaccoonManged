@@ -30,7 +30,8 @@ export interface Env{
 export interface Props {
     comment:Comment,
     navigation:any,
-    env:Env
+    env:Env,
+    lang:string
 }
 const PostCard: React.FC<Props> = (props) => {
      let theme = useTheme();

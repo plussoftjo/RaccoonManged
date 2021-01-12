@@ -14,6 +14,7 @@ let Orders = (props) => {
 
     let {orders} = props.user
     let {navigation,locale} = props;
+    let {lang} = props.locale;
     let CardList = ({title,value}) => (
         <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',borderBottomColor:'#7e7e7e',borderBottomWidth:0.5,paddingVertical:5}}>
             <View>
@@ -26,19 +27,19 @@ let Orders = (props) => {
     )
     let OrderCard = ({order}) => (
         <View style={{padding:15,marginVertical:10,borderColor:'#7e7e7e',borderWidth:1,borderRadius:5}}>
-            <CardList  title={'#' + translate('my_orders.id')} value={'#' + order.id}></CardList>
-            <CardList  title={'#' + translate('my_orders.category')} value={order.prizes_categories.title}></CardList>
-            <CardList  title={'#' + translate('my_orders.type')} value={order.prizes_sub_categories.title}></CardList>
-            <CardList  title={'#' + translate('my_orders.fee')} value={order.fee}></CardList>
-            <CardList  title={'#' + translate('my_orders.code')} value={order.codes.code}></CardList>
-            <CardList  title={'#' + translate('my_orders.date')} value={order.created_at}></CardList>
+            <CardList  title={'#' + translate('my_orders.id',lang)} value={'#' + order.id}></CardList>
+            <CardList  title={'#' + translate('my_orders.category',lang)} value={order.prizes_categories.title}></CardList>
+            <CardList  title={'#' + translate('my_orders.type',lang)} value={order.prizes_sub_categories.title}></CardList>
+            <CardList  title={'#' + translate('my_orders.fee',lang)} value={order.fee}></CardList>
+            <CardList  title={'#' + translate('my_orders.code',lang)} value={order.codes.code}></CardList>
+            <CardList  title={'#' + translate('my_orders.date',lang)} value={order.created_at}></CardList>
         </View>
     )
      return(
          <Layout style={{flex:1}}>
             <GradientSpace />
             <ScrollView contentContainerStyle={{flexGrow:1}} showsVerticalScrollIndicator={false}>
-                <HeaderContent rtl={locale.rtl} navigation={navigation} title={translate('my_orders.header')} />
+                <HeaderContent rtl={locale.rtl} navigation={navigation} title={translate('my_orders.header',lang)} />
                 <View style={{paddingTop:15}}></View>
                 <ContentCard >
                 {orders.map((trg,index) => (

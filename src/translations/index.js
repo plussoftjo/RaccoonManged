@@ -33,7 +33,6 @@ export const setI18nConfig = async(lang,isRTL) => {
   // Set Locale in i18n
   i18n.locale = lang;
   // Set store disppatch to locale in settings locale
-  store.dispatch(SettingsActions.setLocale({lang:lang,rtl:isRTL}));
   return "Done";
 };
 
@@ -42,7 +41,6 @@ export const SetFirstTime = async (lang, isRTL) => {
   i18n.translations = { [lang]: translationGetters[lang]() };
   i18n.locale = lang;
    // Set store disppatch to locale in settings locale
-   store.dispatch(SettingsActions.setLocale({lang:lang,rtl:isRTL}));
   return 'Done';
 };
 
@@ -52,6 +50,5 @@ export const changeLanguage = async(lang,isRTL) => {
   i18n.translations = { [lang]: translationGetters[lang]() };
   i18n.locale = lang;
    // Set store disppatch to locale in settings locale
-   store.dispatch(SettingsActions.setLocale({lang:lang,rtl:isRTL}));
   Updates.reloadAsync();
 }

@@ -11,7 +11,7 @@ import {translate} from '../../../../translations'
 
 let Tasks = ({ user, setShowToast, setCoinsLogs, setTodayCoins, setCoins,locale }) => {
   let [isSync,setIsSync] = React.useState(false)
-  
+  let {lang} = locale
   let TaskStepsChecker = (title, has) => {
     let takenToday = Helper.coinsLogsChecker(title, user.coinsLogs);
     if (takenToday) {
@@ -66,7 +66,7 @@ let Tasks = ({ user, setShowToast, setCoinsLogs, setTodayCoins, setCoins,locale 
         <Text category="h5">Social Tasks</Text>
       </View>
       <TaskList
-        title={translate('coins.tasks.follow_person')}
+        title={translate('coins.tasks.follow_person',lang)}
         scope={"Follow Persion"}
         coins={2}
         done={TaskStepsChecker("Follow Persion", user.socialTasks.todayFollowPersion)}
@@ -74,9 +74,10 @@ let Tasks = ({ user, setShowToast, setCoinsLogs, setTodayCoins, setCoins,locale 
         icon={Images.Follow}
         translate={translate}
         rtl={locale.rtl}
+        lang={lang}
       />
       <TaskList
-        title={translate('coins.tasks.make_post')}
+        title={translate('coins.tasks.make_post',lang)}
         scope={"Make Post"}
         coins={2}
         done={TaskStepsChecker("Make Post", user.socialTasks.todayMakePost)}
@@ -84,9 +85,10 @@ let Tasks = ({ user, setShowToast, setCoinsLogs, setTodayCoins, setCoins,locale 
         icon={Images.Post}
         translate={translate}
         rtl={locale.rtl}
+        lang={lang}
       />
       <TaskList
-        title={translate('coins.tasks.comment_in_post')}
+        title={translate('coins.tasks.comment_in_post',lang)}
         scope={"Comment in post"}
         coins={3}
         done={TaskStepsChecker("Comment in post", user.socialTasks.todayMakeComment)}
@@ -94,6 +96,7 @@ let Tasks = ({ user, setShowToast, setCoinsLogs, setTodayCoins, setCoins,locale 
         icon={Images.Comment}
         translate={translate}
         rtl={locale.rtl}
+        lang={lang}
       />
     </View>
   );

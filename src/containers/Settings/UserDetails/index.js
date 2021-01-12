@@ -23,6 +23,7 @@ import {translate} from '../../../translations'
 let UserDetails = (props) => {
   let { navigation,setUser,locale } = props;
   let { user } = props.user;
+  let {lang} = props.locale
   let [image, setImage] = useState(null);
   let [data, setData] = React.useState({
     name: user.name,
@@ -88,7 +89,7 @@ let UserDetails = (props) => {
       data,
       (res) => {
         console.log(res);
-        alert(translate('user_details.update_profile_success'));
+        alert(translate('user_details.update_profile_success',lang));
       },
       (err) => {
         console.log(err.response);
@@ -104,7 +105,7 @@ let UserDetails = (props) => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ flexGrow: 1 }}
       >
-        <Header navigation={navigation} rtl={locale.rtl} title={translate('user_details.header')} />
+        <Header navigation={navigation} rtl={locale.rtl} title={translate('user_details.header',lang)} />
         <Pressable
           style={{
             justifyContent: "center",
@@ -130,23 +131,23 @@ let UserDetails = (props) => {
         <ContentCard>
           <View id="Group">
             <Input
-              name={translate('user_details.user_name')}
-              label={translate('user_details.user_name')}
+              name={translate('user_details.user_name',lang)}
+              label={translate('user_details.user_name',lang)}
               value={data.name}
               onChangeText={(val) => setData({ ...data, name: val })}
             />
             <View style={{ marginTop: 5 }}></View>
             <Input
-              name={translate('user_details.phone')}
-              label={translate('user_details.phone')}
+              name={translate('user_details.phone',lang)}
+              label={translate('user_details.phone',lang)}
               value={data.phone}
               onChangeText={(val) => setData({ ...data, phone: val })}
             />
             <View style={{ marginTop: 5 }}></View>
             <Input
-              name={translate('user_details.password')}
-              label={translate('user_details.password')}
-              caption={translate('user_details.keep_password')}
+              name={translate('user_details.password',lang)}
+              label={translate('user_details.password',lang)}
+              caption={translate('user_details.keep_password',lang)}
               captionIcon={AlertIcon}
               secureTextEntry={true}
               value={data.password}
@@ -159,7 +160,7 @@ let UserDetails = (props) => {
                 save();
               }}
             >
-              {translate('user_details.save')}
+              {translate('user_details.save',lang)}
             </Button>
           </View>
         </ContentCard>

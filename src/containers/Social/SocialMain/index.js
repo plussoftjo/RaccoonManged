@@ -38,7 +38,7 @@ import {
 
 let Social = (props) => {
   let { user, setExplorPosts, social, setPost, setProfile,locale } = props;
-
+  let {lang} = props.locale
 
   // Ads Ids
   let _AdMob = Platform.OS == 'android'?'ca-app-pub-8749426160957410/7873519348':'ca-app-pub-8749426160957410/9373662645'
@@ -97,6 +97,7 @@ let Social = (props) => {
         post={item}
         user_id={user.user.id}
         translate={translate}
+        lang={lang}
       />
     );
   };
@@ -164,10 +165,10 @@ let Social = (props) => {
           setSelectedIndex(index);
         }}
       >
-        <Tab title={translate("social.followers")} />
-        <Tab title={translate("social.explore")} />
+        <Tab title={translate("social.followers",lang)} />
+        <Tab title={translate("social.explore",lang)} />
       </TabBar>
-      <Search setSelectedIndex={setSelectedIndex} rtl={locale.rtl} />
+      <Search setSelectedIndex={setSelectedIndex} lang={lang} rtl={locale.rtl} />
       {Platform.OS !== 'web' &&
       <AdMobBanner
         bannerSize="smartBannerPortrait"
@@ -198,7 +199,7 @@ let Social = (props) => {
             >
             <Icon name="alert-triangle-outline" style={{width:64,height:64}} fill={theme['text-hint-color']} />
               <Text category="s1" style={{ textAlign: "center",color:theme['text-hint-color'] }}>
-                {translate("social.you_dont_follow")}
+                {translate("social.you_dont_follow",lang)}
               </Text>
             </View>
           ) : null}
