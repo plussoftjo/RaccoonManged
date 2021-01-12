@@ -5,12 +5,12 @@ import { Text } from "@ui-kitten/components";
 
 import {Models,env,colors} from '../../../../constants'
 import {translate} from '../../../../translations'
-export default ({user}) => {
+export default ({user,lang}) => {
   return (
     <View>
       <View style={{ padding: 20, flexDirection: "row" }}>
         <Text style={{ color: "white" }} category="h1">
-          {translate('settings_main.header')}
+          {translate('settings_main.header',lang)}
         </Text>
       </View>
       <View
@@ -64,11 +64,11 @@ export default ({user}) => {
         }}
       >
       <View style={{flexDirection:'row',alignItems:"flex-end"}}>
-      <Text category="h4" style={{textAlign:'left',color:'white'}}>{translate('settings_main.code')}: </Text>
+      <Text category="h4" style={{textAlign:'left',color:'white'}}>{translate('settings_main.code',lang)}: </Text>
       <Text category="h3" style={{textAlign:'left',color:colors.cottonCandy,textDecorationLine:'underline'}}>{user.id}</Text>
 
       </View>
-        <Text category={'s1'} style={{textAlign:'left',color:'white',marginTop:5}}>{translate('settings_main.send_this_code')}</Text>
+        <Text category={'s1'} style={{textAlign:'left',color:'white',marginTop:5}}>{translate('settings_main.send_this_code',lang)}</Text>
       </View>
     </View>
   )

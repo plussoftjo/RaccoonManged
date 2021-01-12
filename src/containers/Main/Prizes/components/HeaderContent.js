@@ -5,7 +5,7 @@ import { Text } from '@ui-kitten/components'
 import {env} from '../../../../constants'
 import {translate} from '../../../../translations'
 
-export default ({user,coins}) => {
+export default ({user,coins,lang}) => {
   return (
     <View>
       <View
@@ -19,7 +19,7 @@ export default ({user,coins}) => {
         }}
       >
         <Text category="s1" style={{ color: "white" }}>
-          {translate('prizes.header')}
+          {translate('prizes.header',lang)}
         </Text>
         <Image
           source={{ uri: env.server + user.avatar }}
@@ -48,7 +48,7 @@ export default ({user,coins}) => {
         }}
       >
         <Text category="h3" style={{ color: "white" }}>
-        {translate('prizes.total_coins')}
+        {translate('prizes.total_coins',lang)}
         </Text>
         <Text category="h3" style={{ color: "white" }}>
           {coins}

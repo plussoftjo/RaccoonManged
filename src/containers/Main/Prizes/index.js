@@ -21,6 +21,7 @@ import {PrizesActions} from '../../../stores'
 let Prizes = (props) => {
   let {user,coins} = props.user;
   let {prizes,navigation,setSelectedCategory} = props;
+  let {lang,rtl} = props.locale
   
 
   let onPressCategory = (category) => {
@@ -31,11 +32,11 @@ let Prizes = (props) => {
     <Layout style={{ flex: 1 }}>
     <GradientSpace></GradientSpace>
     <ScrollView showsVerticalScrollIndicator={false}>
-    <HeaderContent user={user} coins={coins} />
+    <HeaderContent lang={lang} user={user} coins={coins} />
     <View style={{height:30}}></View>
       <ContentCard>
         <View style={styles.container}>
-          <Text category="h3" style={{textAlign:'left'}}>{translate('prizes.digital_card')}</Text>
+          <Text category="h3" style={{textAlign:'left'}}>{translate('prizes.digital_card',lang)}</Text>
         </View>
         <View style={styles.contentCard}>
         {prizes.prizesCategories.map((trg,index) => (
@@ -54,7 +55,8 @@ let Prizes = (props) => {
 const mapStateToProps = (state) => {
   return {
     user:state.user,
-    prizes:state.prizes
+    prizes:state.prizes,
+    locale:state.settings.locale
   };
 };
 

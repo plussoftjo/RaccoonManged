@@ -19,7 +19,7 @@ import {HeaderContent} from './components'
 let ShowPrizesCategories = (props) => {
     let {selectedCategory} = props.prizes;
     let {navigation,setSelectedSubCategory} = props;
-    let {rtl} = props.locale;
+    let {rtl,lang} = props.locale;
     
     let onPressSubCategory = (subCategory) => {
         setSelectedSubCategory(subCategory);
@@ -46,7 +46,7 @@ let ShowPrizesCategories = (props) => {
                     <Text style={{paddingTop:10,color:'white',fontSize:16,fontWeight:'500'}}>{selectedCategory.description}</Text>
                 </View>
                 <ContentCard >
-                <Text category="s1" style={{textAlign:'left',marginBottom:10}}>{translate('prizes_categories_show.select_card')}</Text>
+                <Text category="s1" style={{textAlign:'left',marginBottom:10}}>{translate('prizes_categories_show.select_card',lang)}</Text>
                     {selectedCategory.prizes_sub_categories.map((trg,index) => (
                         <PrizesSubCategoriesCard key={index} SubCategory={trg} />
                     ))}

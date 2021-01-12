@@ -4,7 +4,7 @@ import { Text, Input,Icon } from "@ui-kitten/components";
 import {apis} from '../../../../services'
 import {translate} from '../../../../translations'
 
-export default ({ setSelectedIndex,rtl }) => {
+export default ({ setSelectedIndex,rtl,lang }) => {
   let SearchIcon = (props) => <Icon {...props} name="search" />;
   let [search,setSearch] = useState('')
   let [isSearch,setIsSearch] = useState(false)
@@ -27,7 +27,7 @@ export default ({ setSelectedIndex,rtl }) => {
   return (
     <View>
       <View style={{ marginHorizontal: 15, marginTop: 5 }}>
-        <Input placeholder={translate('social.search')} textStyle={{textAlign:rtl ? 'right':'left'}} value={search} onChangeText={val => {
+        <Input placeholder={translate('social.search',lang)} textStyle={{textAlign:rtl ? 'right':'left'}} value={search} onChangeText={val => {
             setSearch(val);
             _search()
             }} accessoryLeft={SearchIcon} />

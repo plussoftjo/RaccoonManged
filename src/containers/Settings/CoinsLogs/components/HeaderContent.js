@@ -2,7 +2,7 @@ import React from "react";
 import { View, Pressable } from "react-native";
 import { Text, Icon } from "@ui-kitten/components";
 
-export default ({ navigation,rtl }) => {
+export default ({ navigation,rtl,title }) => {
   return (
     <View
       style={{
@@ -26,7 +26,7 @@ export default ({ navigation,rtl }) => {
 
       <View style={{ width: 10 }}></View>
       <Text style={{ color: "white" }} category="s1">
-        Coins Logs
+        {title}
       </Text>
     </View>
   );

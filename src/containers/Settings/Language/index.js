@@ -15,7 +15,7 @@ let Orders = (props) => {
 
     let {navigation} = props;
     let [inx,setInx] = React.useState(0);
-
+    let {lang} = props.locale
 
     React.useEffect(() => {
         let lang = props.locale.lang;
@@ -30,10 +30,10 @@ let Orders = (props) => {
          <Layout style={{flex:1}}>
             <GradientSpace />
             <ScrollView contentContainerStyle={{flexGrow:1}} showsVerticalScrollIndicator={false}>
-                <HeaderContent navigation={navigation} title={translate('languages.header')} rtl={props.locale.rtl} title={translate('languages.header')} />
+                <HeaderContent navigation={navigation} title={translate('languages.header',lang)} rtl={props.locale.rtl} title={translate('languages.header')} />
                 <View style={{paddingTop:15}}></View>
                 <ContentCard >
-                    <Text category="s1" style={{textAlign:'left'}}>{translate('languages.select_your_language')}</Text>
+                    <Text category="s1" style={{textAlign:'left'}}>{translate('languages.select_your_language',lang)}</Text>
                     <TouchableOpacity
             onPress={() => {
               // change Language

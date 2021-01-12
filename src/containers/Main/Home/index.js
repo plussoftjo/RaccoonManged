@@ -25,6 +25,7 @@ let Home = (props) => {
 
   
   let {settings,user,setSteps} = props;
+  let {lang,rtl} = props.settings.locale
 
 
   let _getSteps = () => {
@@ -52,11 +53,11 @@ let Home = (props) => {
   return (
     <Layout style={styles.container}>
     <GradientSpace />
-        <HeaderContent user={user.user} navigation={props.navigation}/>
+        <HeaderContent lang={lang} user={user.user} navigation={props.navigation}/>
       <ScrollView id="ContentCard" showsVerticalScrollIndicator={false} contentContainerStyle={styles.contentCard}>
         <View style={styles.totalContentCard}>
           <Text style={styles.centerText} category="h1">
-            {translate('main.total_coins')}
+            {translate('main.total_coins',lang)}
           </Text>
           <Text style={styles.centerText} category="h5">
             {user.coins}
@@ -65,11 +66,11 @@ let Home = (props) => {
             props.navigation.navigate('Coins')
           }}>GO</Button>
         </View>
-        <Text category="h3" style={{textAlign:'left'}}>{translate('main.today')}</Text>
+        <Text category="h3" style={{textAlign:'left'}}>{translate('main.today',lang)}</Text>
         <View style={styles.detailsCard}>
-          <DetailsBox title={translate('main.steps')} color={'#ffebee'} image={Images.Steps} value={user.steps} />
-          <DetailsBox title={translate('main.coins')} color={'#ede7f6'} image={Images.Coins} value={user.todayCoins} />
-          <DetailsBox title={translate('main.task_done')} color={'#fff9c4'} image={Images.Tasks} value={user.coinsLogs.length} />
+          <DetailsBox title={translate('main.steps',lang)} color={'#ffebee'} image={Images.Steps} value={user.steps} />
+          <DetailsBox title={translate('main.coins',lang)} color={'#ede7f6'} image={Images.Coins} value={user.todayCoins} />
+          <DetailsBox title={translate('main.task_done',lang)} color={'#fff9c4'} image={Images.Tasks} value={user.coinsLogs.length} />
         </View>
       </ScrollView>
     </Layout>

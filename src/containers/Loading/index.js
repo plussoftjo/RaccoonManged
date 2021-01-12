@@ -9,11 +9,11 @@ import { useIsFocused } from "@react-navigation/native";
 import { StorageToken } from "../../constants";
 
 // Services
-import { apis,LocaleLoader } from "../../services";
+import { apis, LocaleLoader } from "../../services";
 
 // Stores
 import { connect } from "react-redux";
-import { UserActions, PrizesActions } from "../../stores";
+import { UserActions, PrizesActions,SettingsActions } from "../../stores";
 
 let Loading = (props) => {
   let {
@@ -25,7 +25,8 @@ let Loading = (props) => {
     setCounts,
     setSocialTasks,
     setPrizesCategories,
-    setOrders
+    setOrders,
+    setLocale
   } = props;
   const isFocused = useIsFocused();
   /**
@@ -84,8 +85,9 @@ let Loading = (props) => {
           setPrizesCategories(res.prizesCategories);
           // Set Orders
           setOrders(res.orders);
-
-          navigation.navigate("MainNavigatin");
+          setTimeout(() => {
+            navigation.navigate("MainNavigatin");
+          }, 1500);
         },
         (err) => {
           console.log(err);
@@ -116,6 +118,19 @@ let Loading = (props) => {
 
     await LocaleLoader();
 
+    let _locale = await AsyncStorage.getItem(StorageToken.localeToken);
+        if (_locale == "en") {
+          setLocale({
+            lang: "en",
+            rtl: false,
+          });
+        } else if (_locale == "ar") {
+          setLocale({
+            lang: "ar",
+            rtl: true,
+          });
+        }
+
     // If Auth @setUser in the stores
     let _token = "Bearer " + _userToken;
     apis.user.auth(
@@ -134,7 +149,6 @@ let Loading = (props) => {
   // UseEffect
   useEffect(() => {
     // Checker Call
-
 
     checker();
   }, [isFocused]);
@@ -168,8 +182,10 @@ const mapDispatchToProps = (dispatch) => {
     setPosts: (item) => dispatch(UserActions.setPosts(item)),
     setCounts: (item) => dispatch(UserActions.setCounts(item)),
     setSocialTasks: (item) => dispatch(UserActions.setSocialTasks(item)),
-    setPrizesCategories: (item) => dispatch(PrizesActions.setPrizesCategories(item)),
+    setPrizesCategories: (item) =>
+      dispatch(PrizesActions.setPrizesCategories(item)),
     setOrders: (item) => dispatch(UserActions.setOrders(item)),
+    setLocale:(item) => dispatch(SettingsActions.setLocale(item))
   };
 };
 

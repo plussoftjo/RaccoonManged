@@ -41,13 +41,14 @@ export interface Props {
      _like: any,
      _unLike: any,
      env: Env,
-     translate: any
+     translate: any,
+     lang:string
 }
 const PostCard: React.FC<Props> = (props) => {
      let theme = useTheme();
      let [isLike, setIsLike] = React.useState(false);
      let [likeCount, setLikeCount] = React.useState(0)
-     let { post, user_id, translate } = props;
+     let { post, user_id, translate,lang } = props;
 
      let _checkIfLike = () => {
           let like = false;
@@ -113,7 +114,7 @@ const PostCard: React.FC<Props> = (props) => {
                     </View>
                </View>
                <View style={{ marginTop: 5 }}>
-                    <Text category="s1" style={{ color: 'red',textAlign: 'left' }}>{likeCount} {translate('post.likes')}</Text>
+                    <Text category="s1" style={{ color: 'red',textAlign: 'left' }}>{likeCount} {translate('post.likes',lang)}</Text>
                     <View style={{ flexDirection: 'column', }}>
                          <Text category="s1" style={{textAlign:'left'}}>{props.profile.name}</Text>
                          <Text category="s2" style={{textAlign: 'left'}}>{props.post.body}</Text>
