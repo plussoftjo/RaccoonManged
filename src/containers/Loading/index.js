@@ -100,13 +100,36 @@ let Loading = (props) => {
   };
 
   let checker = async () => {
-    // First lets check if its first time open the app
-    let first_time = await AsyncStorage.getItem(StorageToken.firstTime);
-    if (!first_time) {
-      // If The first time user open the app
-      navigation.navigate("Steps");
-      return;
+
+    await LocaleLoader();
+
+    let _locale = await AsyncStorage.getItem(StorageToken.localeToken);
+    if(!locale) {
+      setLocale({
+        lang: "en",
+        rtl: false,
+      });
+    }else {
+      if (_locale == "en") {
+        setLocale({
+          lang: "en",
+          rtl: false,
+        });
+      } else if (_locale == "ar") {
+        setLocale({
+          lang: "ar",
+          rtl: true,
+        });
+      }
     }
+        
+    // First lets check if its first time open the app
+    // let first_time = await AsyncStorage.getItem(StorageToken.firstTime);
+    // if (!first_time) {
+    //   // If The first time user open the app
+    //   navigation.navigate("Steps");
+    //   return;
+    // }
 
     // Check if user login or not
     let _userToken = await AsyncStorage.getItem(StorageToken.userToken);
@@ -116,20 +139,7 @@ let Loading = (props) => {
       return;
     }
 
-    await LocaleLoader();
-
-    let _locale = await AsyncStorage.getItem(StorageToken.localeToken);
-        if (_locale == "en") {
-          setLocale({
-            lang: "en",
-            rtl: false,
-          });
-        } else if (_locale == "ar") {
-          setLocale({
-            lang: "ar",
-            rtl: true,
-          });
-        }
+    
 
     // If Auth @setUser in the stores
     let _token = "Bearer " + _userToken;
