@@ -111,6 +111,9 @@ let Post = (props) => {
   };
 
   let _loadAds = async() => {
+    // TODO: Change to not dev
+    // Deploy: ca-app-pub-8749426160957410/5937621142
+    // Test: ca-app-pub-3940256099942544/1033173712
     let _AdMobID = Platform.OS == 'android'? 'ca-app-pub-8749426160957410/5937621142':'ca-app-pub-8749426160957410/9210011114'
     await AdMobInterstitial.setAdUnitID(_AdMobID);
     await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true});
@@ -120,7 +123,7 @@ let Post = (props) => {
     if(Platform.OS !== 'web') {
       _loadAds()
     }
-  })
+  },[])
 
   return (
     <Layout style={{ flex: 1 }}>

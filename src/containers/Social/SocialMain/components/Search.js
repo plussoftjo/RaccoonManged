@@ -4,20 +4,27 @@ import { Text, Input,Icon } from "@ui-kitten/components";
 import {apis} from '../../../../services'
 import {translate} from '../../../../translations'
 
-export default ({ setSelectedIndex,rtl,lang }) => {
+import {connect} from "react-redux"
+import {SocialActions} from '../../../../stores'
+
+let Search =  ({ setSelectedIndex,rtl,lang,setIsSearch,setSearchUsers }) => {
   let SearchIcon = (props) => <Icon {...props} name="search" />;
   let [search,setSearch] = useState('')
-  let [isSearch,setIsSearch] = useState(false)
+  let [isSearch,setIsSearchx] = useState(false)
   let [profiles,setProfiles] = useState([])
+
 
   let _search = () => {
     if(!isSearch) {
-        setIsSearch(true)
+      setIsSearchx(true)
+      setIsSearch(true)
         apis.social.search(
             {search:search},
             (res) => {
                 setProfiles(res)
+                setSearchUsers(res)
                 setIsSearch(false)
+                setIsSearchx(false)
             },
             (err) => {
                 console.log(err.response);
@@ -32,7 +39,21 @@ export default ({ setSelectedIndex,rtl,lang }) => {
             _search()
             }} accessoryLeft={SearchIcon} />
       </View>
-      
     </View>
   );
 };
+
+const mapStateToProps = (state) => {
+  return {
+      social:state.social
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      setIsSearch:item => dispatch(SocialActions.setIsSearch(item)),
+      setSearchUsers:item => dispatch(SocialActions.setSearchUsers(item))
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

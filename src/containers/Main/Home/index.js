@@ -1,11 +1,11 @@
 import React,{useEffect,useState} from "react";
-import { View, Image, ScrollView, StyleSheet } from "react-native";
+import { View, Image, ScrollView, StyleSheet,Platform } from "react-native";
 import { Layout, Text, Button } from "@ui-kitten/components";
 import { Octicons, Entypo } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Pedometer } from 'expo-sensors';
 // Components
-import { HeaderContent, DetailsBox } from "./components";
+import { HeaderContent, DetailsBox,Steps } from "./components";
 
 // Global Components
 import { Headers,GradientSpace } from "../../../components";
@@ -33,20 +33,44 @@ let Home = (props) => {
     const start = new Date();
     start.setHours(0,0,0,0);
     end.setHours(23,59,59,999);
+    
+    
+    function getStep() {
+      Pedometer.getStepCountAsync(start, end).then(
+        result => {
+          setSteps(result.steps);
+          Pedometer.watchStepCount(watchRes => {
+            let _newSteps = watchRes.steps;
+            let _oldSteps = result.steps;
+            let _sumSteps = _newSteps + _oldSteps;
+            setSteps(_sumSteps)
+          });
+          },
+          error => {
+            console.log(error)
+          }
+        );
 
-    Pedometer.getStepCountAsync(start, end).then(
+        
+       
+    }
+    Pedometer.isAvailableAsync().then(
       result => {
-        setSteps(result.steps);
+        getStep()
       },
       error => {
         console.log(error)
       }
     );
+    
+    
   }
 
   useEffect(() => {
     // Call Get Steps
-    _getSteps();
+    if(Platform.OS == 'ios') {
+      _getSteps();
+    }
     
   },[])
 
@@ -73,6 +97,9 @@ let Home = (props) => {
           <DetailsBox title={translate('main.task_done',lang)} color={'#fff9c4'} image={Images.Tasks} value={user.coinsLogs.length} />
         </View>
       </ScrollView>
+      {Platform.OS == 'android' &&
+        <Steps />
+      }
     </Layout>
   );
 };

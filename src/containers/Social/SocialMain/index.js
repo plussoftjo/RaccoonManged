@@ -21,7 +21,7 @@ import {
 } from "@ui-kitten/components";
 import { connect } from "react-redux";
 //Component
-import { PostCard, Search, SkeletonSpace } from "./components";
+import { PostCard, Search, SkeletonSpace,SearchResults } from "./components";
 
 // Models
 import { Models, env } from "../../../constants";
@@ -41,6 +41,9 @@ let Social = (props) => {
   let {lang} = props.locale
 
   // Ads Ids
+  // TODO: Change 
+  // Deploy: ca-app-pub-8749426160957410/7873519348
+  // Dev: ca-app-pub-3940256099942544/6300978111
   let _AdMob = Platform.OS == 'android'?'ca-app-pub-8749426160957410/7873519348':'ca-app-pub-8749426160957410/9373662645'
 
 
@@ -181,6 +184,7 @@ let Social = (props) => {
         <SkeletonSpace />
       ) : (
         <View id="HoleView" style={{ flex: 1 }}>
+        <SearchResults navigation={props.navigation}/>
           {selectedIndex == 0 && followPosts.length !== 0 ? (
             <FlatList
               showsVerticalScrollIndicator={false}

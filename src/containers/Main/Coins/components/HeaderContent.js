@@ -19,6 +19,12 @@ let HeaderContent = (props) => {
   let {setShowToast,setCoinsLogs,setTodayCoins,setCoins,navigation,rtl} = props;
   let zoom = useRef(new Animated.Value(1)).current;
 
+
+  let AdMobRewardedList = () =>{
+    AdMobRewarded.addEventListener('rewardedVideoDidRewardUser',function (event) {
+      _recive();
+    });
+  }
   let _insertCoins = (coinsLog,coin) => {
     let _coinsLogs = coinsLogs;
     _coinsLogs.push(coinsLog);
@@ -27,9 +33,12 @@ let HeaderContent = (props) => {
     let _newCoins = coins + coin;
     setTodayCoins(_newTodayCoins)
     setCoins(_newCoins)
+    AdMobRewarded.removeEventListener("rewardedVideoDidRewardUser")
+
   }
 
   let _recive = () => {
+
     let data = {
       user_id: user.id,
       coin: 3,
@@ -38,7 +47,6 @@ let HeaderContent = (props) => {
     apis.coins.resiveCoins(
       data,
       (res) => {
-        // TODO: When recive coins make alert
         setShowToast(true)
         _insertCoins(res.coinsLog,3);
         setTimeout(() => {
@@ -51,6 +59,8 @@ let HeaderContent = (props) => {
     );
   };
 
+
+ 
   React.useEffect(() => {
     if (props.scrollY < 0) {
       let _y = props.scrollY * -1;
@@ -69,23 +79,25 @@ let HeaderContent = (props) => {
         useNativeDriver: true,
       }).start();
     }
+
+    AdMobRewardedList()
+    return () => {
+      AdMobRewarded.removeAllListeners()
+    }
   });
+
+
 
 
   let showads = async()=> {
     if(Platform.OS !== 'web') {
+      // Deploy: ca-app-pub-8749426160957410/7434535647 
+      // Dev: ca-app-pub-3940256099942544/5224354917
       let _AdsID = Platform.OS == 'android'?'ca-app-pub-8749426160957410/7434535647':'ca-app-pub-8749426160957410/5789640850'
       await AdMobRewarded.setAdUnitID(_AdsID);
       await AdMobRewarded.requestAdAsync();
       await AdMobRewarded.showAdAsync();
-      AdMobRewarded.addEventListener('rewardedVideoDidRewardUser',function (event) {
-        _recive();
-      });
-      AdMobRewarded.addEventListener('rewardedVideoDidFailToLoad',function (event) {
-        console.log('The Video Not Load')
-      });
     }
-    
   }
 
   return (
@@ -142,6 +154,7 @@ let HeaderContent = (props) => {
               <Text category="h3" style={{ color: "white" }}>
                 {todayCoins}
               </Text>
+              
               <TouchableOpacity onPress={() => {
                 showads();
               }}

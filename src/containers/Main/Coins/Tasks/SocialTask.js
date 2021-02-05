@@ -8,8 +8,23 @@ import { apis, Helper } from "../../../../services";
 import { UserActions } from "../../../../stores";
 import {Images} from '../../../../constants'
 import {translate} from '../../../../translations'
-
+import {
+  AdMobBanner,
+  AdMobInterstitial,
+  PublisherBanner,
+  AdMobRewarded,
+  setTestDeviceIDAsync,
+} from 'expo-ads-admob';
 let Tasks = ({ user, setShowToast, setCoinsLogs, setTodayCoins, setCoins,locale }) => {
+  let _loadAds = async() => {
+    // TODO: Change to not dev
+    // Deploy: ca-app-pub-8749426160957410/5937621142
+    // Test: ca-app-pub-3940256099942544/1033173712
+    let _AdMobID = Platform.OS == 'android'? 'ca-app-pub-8749426160957410/5937621142':'ca-app-pub-8749426160957410/9210011114'
+    await AdMobInterstitial.setAdUnitID(_AdMobID);
+    await AdMobInterstitial.requestAdAsync({ servePersonalizedAds: true});
+    await AdMobInterstitial.showAdAsync();
+  }
   let [isSync,setIsSync] = React.useState(false)
   let {lang} = locale
   let TaskStepsChecker = (title, has) => {
@@ -42,6 +57,7 @@ let Tasks = ({ user, setShowToast, setCoinsLogs, setTodayCoins, setCoins,locale 
       coin: coin,
       way: scope,
     };
+    _loadAds()
     apis.coins.resiveCoins(
       data,
       (res) => {
@@ -63,7 +79,7 @@ let Tasks = ({ user, setShowToast, setCoinsLogs, setTodayCoins, setCoins,locale 
   return (
     <View style={styles.taskGroup} id="TaskGroup">
       <View style={styles.taskHeader}>
-        <Text category="h5">Social Tasks</Text>
+        <Text category="h5">{translate('coins.social_tasks',lang)}</Text>
       </View>
       <TaskList
         title={translate('coins.tasks.follow_person',lang)}

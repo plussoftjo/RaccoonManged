@@ -2,6 +2,7 @@
 
 import React from 'react';
 
+import {Platform} from 'react-native'
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { setI18nConfig, SetFirstTime } from '../translations';
@@ -15,7 +16,11 @@ async function LocaleLoader() {
         // Check If the first time is load
         if (!locale) {
             // Set it to english if the first time
-            SetFirstTime("en", false);
+            if(Platform.OS =='ios') {
+                await SetFirstTime("en", false);
+            }else {
+               await setI18nConfig("ar", true);
+            }
         } else {
             if (locale == "en") {
                 await SetFirstTime("en", false);

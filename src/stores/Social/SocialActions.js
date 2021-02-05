@@ -20,3 +20,18 @@ export const setProfile = (item) => {
     payload:item
   }
 }
+
+
+export const setIsSearch = item => {
+  return {
+    type:SocialType.SET_IS_SEARCH,
+    payload:item
+  }
+}
+
+export const setSearchUsers = item => {
+  return {
+    type:SocialType.SET_SEARCH_USERS,
+    payload:item
+  }
+}

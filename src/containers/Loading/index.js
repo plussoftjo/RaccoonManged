@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Image, ImageBackground, StyleSheet, View } from "react-native";
+import { Image, ImageBackground, Platform, View } from "react-native";
 import { Spinner } from "@ui-kitten/components";
 import styles from "./styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -105,10 +105,18 @@ let Loading = (props) => {
 
     let _locale = await AsyncStorage.getItem(StorageToken.localeToken);
     if(!_locale) {
-      setLocale({
-        lang: "en",
-        rtl: false,
-      });
+      if(Platform.OS =='ios') {
+        setLocale({
+          lang: "en",
+          rtl: false,
+        });
+      }else {
+        setLocale({
+          lang: "ar",
+          rtl: true,
+        });
+      }
+      
     }else {
       if (_locale == "en") {
         setLocale({

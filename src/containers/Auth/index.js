@@ -332,7 +332,7 @@ let Auth = (props) => {
                 secureTextEntry={true}
                 style={{ borderRadius: 20, marginTop: 5 }}
               />
-              {model.header == "Register" && (
+              {/* {model.header == "Register" && (
                 <Input
                 placeholder="Referral code"
                 value={data.referral_code}
@@ -342,7 +342,7 @@ let Auth = (props) => {
                 style={{ borderRadius: 20, marginTop: 5 }}
                 keyboardType="number-pad"
                 />
-              )}
+              )} */}
               
             </Animated.View>
           </View>
