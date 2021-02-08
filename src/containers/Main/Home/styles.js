@@ -5,7 +5,6 @@ let styles = StyleSheet.create({
     flex: 1,
   },
   contentCard: {
-    flex: 1,
     backgroundColor: "white",
     marginTop: "10%",
     borderTopLeftRadius: 150,

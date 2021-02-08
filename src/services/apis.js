@@ -87,6 +87,16 @@ let apis = {
           onError(err);
         });
     },
+    storeToken(data,onSucces,onError) {
+      axios
+        .post(env.server + "api/main/notification_token/store", data)
+        .then((res) => {
+          onSuccess(res.data);
+        })
+        .catch((err) => {
+          onError(err);
+        });
+    }
   },
   social:{
     addPost(data,onSuccess,onError) {

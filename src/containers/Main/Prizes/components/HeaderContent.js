@@ -1,11 +1,11 @@
 import React from "react";
-import { View,Image } from "react-native";
+import { View,Image,Platform } from "react-native";
 import { Text } from '@ui-kitten/components'
 
 import {env} from '../../../../constants'
 import {translate} from '../../../../translations'
 
-export default ({user,coins,lang}) => {
+export default ({user,coins,lang,dev}) => {
   return (
     <View>
       <View

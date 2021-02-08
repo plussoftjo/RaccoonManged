@@ -1,17 +1,18 @@
 import { Feather } from "@expo/vector-icons";
 import React from "react";
-import { View } from "react-native";
+import { View, Platform } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useTheme } from "@ui-kitten/components";
+import { connect } from "react-redux";
 
-
-import {Main} from '../containers'
-import SocialNavigation from './SocialNavigation'
-import SettingsNavigation from './SettingsNavigation'
+import { Main } from "../containers";
+import SocialNavigation from "./SocialNavigation";
+import SettingsNavigation from "./SettingsNavigation";
 
 const Tab = createBottomTabNavigator();
 
-export default function BottomTapNavigation(props) {
+let BottomTapNavigation = (props) => {
+  let { dev } = props.settings;
   let theme = useTheme();
   return (
     <Tab.Navigator
@@ -21,14 +22,13 @@ export default function BottomTapNavigation(props) {
 
           if (route.name === "Home") {
             iconName = focused ? "tablet" : "tablet";
-          } else if(route.name === "Coins") {
+          } else if (route.name === "Coins") {
             iconName = focused ? "box" : "box";
-          } else if(route.name === "SocialNavigation") {
+          } else if (route.name === "SocialNavigation") {
             iconName = focused ? "globe" : "globe";
-          }else if(route.name === 'Prizes') {
+          } else if (route.name === "Prizes") {
             iconName = focused ? "award" : "award";
-          }
-          else if(route.name === "SettingsNavigation") {
+          } else if (route.name === "SettingsNavigation") {
             iconName = focused ? "settings" : "settings";
           }
 
@@ -48,7 +48,7 @@ export default function BottomTapNavigation(props) {
         },
       })}
       tabBarOptions={{
-        activeTintColor: theme['color-primary-500'],
+        activeTintColor: theme["color-primary-500"],
         inactiveTintColor: "gray",
         showLabel: false,
       }}
@@ -57,8 +57,28 @@ export default function BottomTapNavigation(props) {
       <Tab.Screen name="Home" component={Main.Home} />
       <Tab.Screen name="SocialNavigation" component={SocialNavigation} />
       <Tab.Screen name="Coins" component={Main.Coins} />
-      <Tab.Screen name="Prizes" component={Main.Prizes} />
+      {Platform.OS == "android" && (
+        <Tab.Screen name="Prizes" component={Main.Prizes} />
+      )}
+      {Platform.OS == "ios" && dev.value == "false" && (
+        <Tab.Screen name="Prizes" component={Main.Prizes} />
+      )}
       <Tab.Screen name="SettingsNavigation" component={SettingsNavigation} />
     </Tab.Navigator>
   );
-}
+};
+
+const mapStateToProps = (state) => {
+  return {
+    settings: state.settings,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BottomTapNavigation);

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, StyleSheet, ScrollView } from "react-native";
+import { View, Image, StyleSheet, ScrollView, Platform } from "react-native";
 import { Layout, Text } from "@ui-kitten/components";
 import { connect } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -15,8 +15,8 @@ import { translate } from "../../../translations";
 
 let SettingsMain = (props) => {
   let { user } = props.user;
-  let { navigation,locale } = props;
-  let {lang} = props.locale;
+  let { navigation, locale, dev } = props;
+  let { lang } = props.locale;
 
   let _logout = async () => {
     try {
@@ -36,30 +36,46 @@ let SettingsMain = (props) => {
         <ContentCard>
           <View style={{ marginTop: 15 }} />
           <ListItem
-            title={translate('settings_main.user_details',lang)}
+            title={translate("settings_main.user_details", lang)}
             icon="edit"
             onPress={() => navigation.navigate("UserDetails")}
             rtl={locale.rtl}
           />
+          {Platform.OS == "android" && (
+            <ListItem
+              title={translate("settings_main.my_orders", lang)}
+              icon="book"
+              onPress={() => navigation.navigate("Orders")}
+              rtl={locale.rtl}
+            />
+          )}
+          {Platform.OS == "ios" && dev.value == "false" && (
+            <ListItem
+              title={translate("settings_main.my_orders", lang)}
+              icon="book"
+              onPress={() => navigation.navigate("Orders")}
+              rtl={locale.rtl}
+            />
+          )}
           <ListItem
-            title={translate('settings_main.my_orders',lang)}
-            icon="book"
-            onPress={() => navigation.navigate("Orders")}
-            rtl={locale.rtl}
-          />
-          <ListItem
-            title={translate('settings_main.coins_logs',lang)}
+            title={translate("settings_main.coins_logs", lang)}
             icon="bars"
             onPress={() => navigation.navigate("CoinsLogs")}
             rtl={locale.rtl}
           />
           <ListItem
-            title={translate('settings_main.languages',lang)}
+            title={translate("settings_main.languages", lang)}
             icon="filetext1"
             onPress={() => navigation.navigate("Language")}
             rtl={locale.rtl}
           />
-          <ListItem caret={false} title={translate('settings_main.logout',lang)} rtl={locale.rtl} icon="logout" onPress={_logout} />
+          <ListItem
+            caret={false}
+            title={translate("settings_main.logout", lang)}
+            rtl={locale.rtl}
+            icon="logout"
+            onPress={_logout}
+          />
         </ContentCard>
       </ScrollView>
     </Layout>
@@ -83,7 +99,8 @@ let styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    locale:state.settings.locale
+    locale: state.settings.locale,
+    dev: state.settings.dev,
   };
 };
 

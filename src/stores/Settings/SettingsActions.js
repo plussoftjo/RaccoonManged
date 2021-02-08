@@ -8,3 +8,9 @@ export const setLocale = (item) => {
     payload:item
   }
 }
+export const setDev = (item) => {
+  return {
+    type:SettingsType.SET_DEV,
+    payload:item
+  }
+}

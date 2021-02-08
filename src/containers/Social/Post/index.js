@@ -32,7 +32,7 @@ import {
 let Post = (props) => {
   let { post, profile } = props.social;
   let { user,socialTasks } = props.user;
-  let {setSocialTasks,locale} = props;
+  let {setSocialTasks,locale,dev} = props;
   let {lang} = props.locale
 
   let [comment, setComment] = React.useState("");
@@ -120,8 +120,16 @@ let Post = (props) => {
     await AdMobInterstitial.showAdAsync();
   }
   React.useEffect(() => {
+    console.log(dev)
     if(Platform.OS !== 'web') {
-      _loadAds()
+      if(Platform.OS == "android") {
+        _loadAds()
+      }
+      if(Platform.OS == 'ios') {
+        if(dev.value == "false") {
+          _loadAds()
+        }
+      }
     }
   },[])
 
@@ -184,7 +192,8 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     social: state.social,
-    locale:state.settings.locale
+    locale:state.settings.locale,
+    dev:state.settings.dev
   };
 };
 

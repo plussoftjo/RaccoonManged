@@ -13,7 +13,7 @@ import { apis, LocaleLoader } from "../../services";
 
 // Stores
 import { connect } from "react-redux";
-import { UserActions, PrizesActions,SettingsActions } from "../../stores";
+import { UserActions, PrizesActions, SettingsActions } from "../../stores";
 
 let Loading = (props) => {
   let {
@@ -26,7 +26,8 @@ let Loading = (props) => {
     setSocialTasks,
     setPrizesCategories,
     setOrders,
-    setLocale
+    setLocale,
+    setDev,
   } = props;
   const isFocused = useIsFocused();
   /**
@@ -85,6 +86,8 @@ let Loading = (props) => {
           setPrizesCategories(res.prizesCategories);
           // Set Orders
           setOrders(res.orders);
+
+          setDev(res.dev);
           setTimeout(() => {
             navigation.navigate("MainNavigatin");
           }, 1500);
@@ -100,24 +103,22 @@ let Loading = (props) => {
   };
 
   let checker = async () => {
-
     await LocaleLoader();
 
     let _locale = await AsyncStorage.getItem(StorageToken.localeToken);
-    if(!_locale) {
-      if(Platform.OS =='ios') {
+    if (!_locale) {
+      if (Platform.OS == "ios") {
         setLocale({
           lang: "en",
           rtl: false,
         });
-      }else {
+      } else {
         setLocale({
           lang: "ar",
           rtl: true,
         });
       }
-      
-    }else {
+    } else {
       if (_locale == "en") {
         setLocale({
           lang: "en",
@@ -130,7 +131,7 @@ let Loading = (props) => {
         });
       }
     }
-        
+
     // First lets check if its first time open the app
     // let first_time = await AsyncStorage.getItem(StorageToken.firstTime);
     // if (!first_time) {
@@ -146,8 +147,6 @@ let Loading = (props) => {
       navigation.navigate("Auth");
       return;
     }
-
-    
 
     // If Auth @setUser in the stores
     let _token = "Bearer " + _userToken;
@@ -203,7 +202,8 @@ const mapDispatchToProps = (dispatch) => {
     setPrizesCategories: (item) =>
       dispatch(PrizesActions.setPrizesCategories(item)),
     setOrders: (item) => dispatch(UserActions.setOrders(item)),
-    setLocale:(item) => dispatch(SettingsActions.setLocale(item))
+    setLocale: (item) => dispatch(SettingsActions.setLocale(item)),
+    setDev: (item) => dispatch(SettingsActions.setDev(item)),
   };
 };
 

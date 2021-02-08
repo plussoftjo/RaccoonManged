@@ -20,7 +20,7 @@ import {PrizesActions} from '../../../stores'
 
 let Prizes = (props) => {
   let {user,coins} = props.user;
-  let {prizes,navigation,setSelectedCategory} = props;
+  let {prizes,navigation,setSelectedCategory,dev} = props;
   let {lang,rtl} = props.locale
   
 
@@ -32,7 +32,7 @@ let Prizes = (props) => {
     <Layout style={{ flex: 1 }}>
     <GradientSpace></GradientSpace>
     <ScrollView showsVerticalScrollIndicator={false}>
-    <HeaderContent lang={lang} user={user} coins={coins} />
+    <HeaderContent dev={dev} lang={lang} user={user} coins={coins} />
     <View style={{height:30}}></View>
       <ContentCard>
         <View style={styles.container}>
@@ -56,7 +56,8 @@ const mapStateToProps = (state) => {
   return {
     user:state.user,
     prizes:state.prizes,
-    locale:state.settings.locale
+    locale:state.settings.locale,
+    dev:state.settings.dev
   };
 };
 

@@ -5,7 +5,7 @@ import { Octicons, Entypo } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Pedometer } from 'expo-sensors';
 // Components
-import { HeaderContent, DetailsBox,Steps } from "./components";
+import { HeaderContent, DetailsBox,Steps,AndroidSteps,NotificationsHandler } from "./components";
 
 // Global Components
 import { Headers,GradientSpace } from "../../../components";
@@ -26,6 +26,7 @@ let Home = (props) => {
   
   let {settings,user,setSteps} = props;
   let {lang,rtl} = props.settings.locale
+  let {dev} = props.settings
 
 
   let _getSteps = () => {
@@ -94,12 +95,21 @@ let Home = (props) => {
         <View style={styles.detailsCard}>
           <DetailsBox title={translate('main.steps',lang)} color={'#ffebee'} image={Images.Steps} value={user.steps} />
           <DetailsBox title={translate('main.coins',lang)} color={'#ede7f6'} image={Images.Coins} value={user.todayCoins} />
-          <DetailsBox title={translate('main.task_done',lang)} color={'#fff9c4'} image={Images.Tasks} value={user.coinsLogs.length} />
+          {Platform.OS == "android" &&
+            <DetailsBox title={translate('main.task_done',lang)} color={'#fff9c4'} image={Images.Tasks} value={user.coinsLogs.length} />
+          }
+          {Platform.OS == "ios" &&
+            dev.value =="false" && (
+            <DetailsBox title={translate('main.task_done',lang)} color={'#fff9c4'} image={Images.Tasks} value={user.coinsLogs.length} />
+            )
+          }
         </View>
+        <View style={{height:50}}></View>
       </ScrollView>
       {Platform.OS == 'android' &&
-        <Steps />
+        <AndroidSteps />
       }
+      <NotificationsHandler />
     </Layout>
   );
 };
@@ -113,7 +123,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setSteps:item => dispatch(UserActions.setSteps(item))
+    setSteps:item => dispatch(UserActions.setSteps(item)),
   };
 };
 

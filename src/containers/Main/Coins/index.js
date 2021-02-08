@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from "react";
-import { View, Image, ScrollView } from "react-native";
+import { View, Image, ScrollView,Platform } from "react-native";
 import { Layout, Text } from "@ui-kitten/components";
 import { connect } from "react-redux";
 import { Entypo } from "@expo/vector-icons";
@@ -19,7 +19,7 @@ import styles from "./styles";
 
 let Coins = (props) => {
   
-  let { user,locale } = props;
+  let { user,locale,dev } = props;
   let [scrollY,setScrollY] = useState(0);
   let [showToast,setShowToast] = useState(false)
 
@@ -36,8 +36,13 @@ let Coins = (props) => {
         <ContentCard>
           <StepsTask setShowToast={setShowToast} />
           <View style={{marginTop:15}}></View>
+          {Platform.OS == "android" &&
           <SocialTask setShowToast={setShowToast} />
-        </ContentCard>
+          }
+          {Platform.OS == "ios" && dev.value == "false" && (
+          <SocialTask setShowToast={setShowToast} />
+          )}
+          </ContentCard>
       </ScrollView>
       {showToast &&
         <Toast status="primary" title={translate('coins.add_coins_success',locale.lang)} />
@@ -49,7 +54,8 @@ let Coins = (props) => {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    locale:state.settings.locale
+    locale:state.settings.locale,
+    dev:state.settings.dev
   };
 };
 
